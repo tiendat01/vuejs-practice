@@ -25,3 +25,10 @@ app.config.errorHandler = (err) => {
 
 // explicitly define additional globals
 // app.config.globalProperties
+
+app.config.globalProperties.$alert = (str) => {
+  window.alert(str);
+};
+app.config.globalProperties.$log = window.console.log;
+
+console.log(app.config.globalProperties);
