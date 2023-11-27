@@ -5,9 +5,7 @@ export default {
   // To access refs in a component's template
   setup() {
     const count = ref(0)
-    return {
-      count
-    }
+    return { count } // unwrap
   }
 }
 </script>
@@ -16,6 +14,8 @@ export default {
 <!--  The setup attribute is a hint that makes Vue perform compile-time transforms that allow us to use Composition API with less boilerplate -->
 <script setup>
 import { nextTick, reactive, ref } from 'vue';
+import UseMousePositionConsumer from './useMousePositionConsumer.vue';
+import VFor from './VFor.vue';
 
 const count = ref(0)
 
@@ -41,7 +41,6 @@ console.log(map.get('count').value) // need .value here too
 
 // ref not in top-level
 const topLevelObj = { id: ref(1) }
-
 </script>
 
 <template>
@@ -61,4 +60,8 @@ const topLevelObj = { id: ref(1) }
   <div>
     <button @click="$log(Math.PI); $alert('haha')">Click me</button>
   </div>
+
+  <UseMousePositionConsumer />
+
+  <VFor />
 </template>
