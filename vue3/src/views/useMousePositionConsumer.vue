@@ -1,5 +1,5 @@
 <script>
-import { useMousePosition } from "./use/useMousePosition";
+import { useMousePosition } from './use/useMousePosition';
 
 export default {
   setup() {
@@ -9,7 +9,7 @@ export default {
     // return {
     //   pos: useMousePosition() // in <template> pos.x - pos.y </template>
     // }
-  }
+  },
 };
 </script>
 

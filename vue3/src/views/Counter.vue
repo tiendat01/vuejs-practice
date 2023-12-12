@@ -15,9 +15,10 @@ export default {
 <script setup>
 import { nextTick, reactive, ref } from 'vue';
 import UseMousePositionConsumer from './useMousePositionConsumer.vue';
+import BlogPostConsumer from './BlogPostConsumer.vue';
 import VFor from './VFor.vue';
 
-const count = ref(0)
+const count = ref(0);
 
 // ref is a property in reactive obj
 const count1 = ref(0);
@@ -36,32 +37,42 @@ console.log(count1.value); // lost reactive connection with state object
 const books = reactive([ref('String type element')]);
 console.log(books[0].value); // not auto unwrap .value , so need .value here
 
-const map = reactive(new Map([['count', ref(0)]]))
-console.log(map.get('count').value) // need .value here too
+const map = reactive(new Map([['count', ref(0)]]));
+console.log(map.get('count').value); // need .value here too
 
 // ref not in top-level
-const topLevelObj = { id: ref(1) }
+const topLevelObj = { id: ref(1) };
 </script>
 
 <template>
-  <div>    
+  <div>
     <!-- auto unwrap ref -->
     {{ count }}
   </div>
 
   <div>
-    <button @click="count++">
-      Increment {{ count }}
-    </button>
+    <button @click="count++">Increment {{ count }}</button>
   </div>
 
   <div>{{ topLevelObj.id + 1 }}</div>
+  <div>{{ topLevelObj.id.value + 1 }}</div>
 
   <div>
-    <button @click="$log(Math.PI); $alert('haha')">Click me</button>
+    <button
+      @click="
+        $log(Math.PI);
+        $alert('haha');
+      "
+    >
+      Click me
+    </button>
   </div>
 
   <UseMousePositionConsumer />
 
   <VFor />
+
+  <br />
+
+  <BlogPostConsumer />
 </template>
