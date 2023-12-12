@@ -16,7 +16,7 @@ app.use(router);
 app.mount('#app');
 
 // app config
-app.config.errorHandler = (err) => {
+app.config.errorHandler = err => {
   // handle error
 };
 
@@ -26,7 +26,7 @@ app.config.errorHandler = (err) => {
 // explicitly define additional globals
 // app.config.globalProperties
 
-app.config.globalProperties.$alert = (str) => {
+app.config.globalProperties.$alert = str => {
   window.alert(str);
 };
 app.config.globalProperties.$log = window.console.log;
