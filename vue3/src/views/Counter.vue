@@ -2,7 +2,7 @@
 <!-- <script>
 import { ref } from 'vue';
 export default {
-  // To access refs in a component's template
+  // To access refs from a component's template
   setup() {
     const count = ref(0)
     return {
