@@ -1,5 +1,5 @@
 <script>
-import { useMousePosition } from './use/useMousePosition';
+import { useMousePosition } from './composable/useMousePosition';
 
 export default {
   setup() {

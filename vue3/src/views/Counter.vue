@@ -17,6 +17,10 @@ import { nextTick, reactive, ref } from 'vue';
 import UseMousePositionConsumer from './useMousePositionConsumer.vue';
 import BlogPostConsumer from './BlogPostConsumer.vue';
 import VFor from './VFor.vue';
+import CustomInput from '../components/CustomInput.vue';
+import UserName from '../components/UserName.vue';
+import FancyListConsumer from './FancyListConsumer.vue';
+import { useFetch } from './composable/useFetch';
 
 const count = ref(0);
 
@@ -42,6 +46,29 @@ console.log(map.get('count').value); // need .value here too
 
 // ref not in top-level
 const topLevelObj = { id: ref(1) };
+
+// ref for input
+const inputData = ref(undefined);
+
+const last = ref(undefined);
+const first = ref(undefined);
+
+const url = ref('/test');
+
+let { data, error } = useFetch(url.value);
+
+setTimeout(() => {
+  url.value = '/new-url';
+}, 1000);
+
+console.log(data.value, error.value);
+
+// inject plugins
+import { inject } from 'vue';
+
+const i18n = inject('i18n');
+
+console.log(i18n.greetings.hello);
 </script>
 
 <template>
@@ -75,4 +102,19 @@ const topLevelObj = { id: ref(1) };
   <br />
 
   <BlogPostConsumer />
+
+  <br />
+
+  <CustomInput v-model:model-value.capitalize.haha="inputData" />
+  {{ inputData }}
+
+  <br />
+  <!-- multiple v-model -->
+  <UserName v-model:first-name.capitalize="first" v-model:last-name.uppercase="last" />
+  {{ first }} - {{ last }}
+
+  <br />
+
+  <FancyListConsumer />
+  {{ $translate('greetings.hello') }}
 </template>

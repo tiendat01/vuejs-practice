@@ -32,3 +32,12 @@ app.config.globalProperties.$alert = str => {
 app.config.globalProperties.$log = window.console.log;
 
 console.log(app.config.globalProperties);
+
+// register plugin
+import i18nPlugin from './plugins/i18n';
+
+app.use(i18nPlugin, {
+  greetings: {
+    hello: 'Bonjour!',
+  },
+});
